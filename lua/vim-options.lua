@@ -15,13 +15,13 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 -- vim.opt.smarttab = true
 
-vim.opt.smartindent = true  -- Neovim's equivalent for better indenting
+vim.opt.smartindent = true -- Neovim's equivalent for better indenting
 
 vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -55,7 +55,7 @@ vim.opt.spell = true
 -- zM: close all open folds
 -- za: toggles the fold at the cursor
 vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevel = 99
 --vim.opt.foldlevelstart = 0
 --vim.opt.foldenable = true
@@ -64,8 +64,9 @@ vim.opt.foldlevel = 99
 vim.opt.list = true
 vim.opt.listchars = { tab = ">·", trail = "█", nbsp = "␣" }
 
--- Open Netrw
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- Open explorer
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+--vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Ctrl+c is the new Esc!
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -97,11 +98,11 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- Copy to clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Delete to void register
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Turn off this garbage
 vim.keymap.set("n", "Q", "<nop>")
@@ -116,13 +117,18 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>mir", "<cmd>CellularAutomaton make_it_rain<CR>")
 vim.keymap.set("n", "<leader>gol", "<cmd>CellularAutomaton game_of_life<CR>")
 
-vim.api.nvim_set_keymap('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>', { noremap = true, silent = true })
+
+-- CodeCompanion AI Shortcuts
+vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle AI Chat" })
+vim.keymap.set({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionActions<cr>", { desc = "Open AI Actions" })
+vim.keymap.set("v", "<leader>ad", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add selected to AI Chat" })
 
 -- Show diagnostics
 vim.keymap.set("n",
-               "<leader>e",
-               vim.diagnostic.open_float,
-               { desc = "Show LSP diagnostic" })
+    "<leader>e",
+    vim.diagnostic.open_float,
+    { desc = "Show LSP diagnostic" })
 
 vim.diagnostic.config({
     underline = true,
@@ -134,14 +140,14 @@ vim.diagnostic.config({
 -- Toggle garbage when copying text
 local copyGarbage = true
 function ToggleCopyGarbage()
-  if copyGarbage then
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-  else
-    vim.opt.number = true
-    vim.opt.relativenumber = true
-  end
-  copyGarbage = not copyGarbage
+    if copyGarbage then
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    else
+        vim.opt.number = true
+        vim.opt.relativenumber = true
+    end
+    copyGarbage = not copyGarbage
 end
 
 -- Persistent Cursor
@@ -154,4 +160,3 @@ end
 --    end
 --  end,
 --})
-
