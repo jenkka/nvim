@@ -20,6 +20,7 @@ return {
             rust = { "rustfmt" },
             python = { "isort", "black" }, -- Sorts imports, then formats code
             go = { "goimports", "gofmt" },
+            sh = { "shfmt" },
             javascript = { "prettier" },
             typescript = { "prettier" },
             ["_"] = { "trim_whitespace" }, -- Runs on all filetypes
@@ -27,7 +28,8 @@ return {
         -- Set up format-on-save
         format_on_save = {
             timeout_ms = 500,
-            lsp_fallback = true, -- If no formatter is found, use the LSP (e.g. gopls)
+            -- lsp_fallback = true, -- If no formatter is found, use the LSP (e.g. gopls)
+            lsp_format = "fallback",
         },
     },
 }

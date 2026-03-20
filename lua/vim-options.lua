@@ -30,10 +30,10 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
--- vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
 -- vim.opt.isfname:append("@-@") -- Useful if you work with files that contain the @ character
 
-vim.opt.updatetime = 50
+vim.opt.updatetime = 200
 
 vim.opt.colorcolumn = "81"
 
@@ -117,7 +117,7 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>mir", "<cmd>CellularAutomaton make_it_rain<CR>")
 vim.keymap.set("n", "<leader>gol", "<cmd>CellularAutomaton game_of_life<CR>")
 
-vim.api.nvim_set_keymap('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>', { noremap = true, silent = true })
 
 -- CodeCompanion AI Shortcuts
 vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle AI Chat" })
@@ -133,7 +133,7 @@ vim.keymap.set("n",
 vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
-    virtual_text = { spacing = 4, prefix = "■" },
+    --virtual_text = { spacing = 4, prefix = "■" },
     severity_sort = true,
 })
 

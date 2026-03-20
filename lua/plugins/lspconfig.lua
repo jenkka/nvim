@@ -13,7 +13,8 @@ return {
                     "lua_ls",
                     "pyright",
                     "gopls",
-                    "rust_analyzer"
+                    "rust_analyzer",
+                    "bashls"
                 }
             })
         end
@@ -30,7 +31,8 @@ return {
                 "lua_ls",
                 "pyright",
                 "gopls",
-                "rust_analyzer"
+                "rust_analyzer",
+                "bashls"
             })
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
