@@ -18,7 +18,7 @@ return {
         formatters_by_ft = {
             lua = { "stylua" },
             rust = { "rustfmt" },
-            python = { "isort", "black" }, -- Sorts imports, then formats code
+            python = { "ruff_fix", "ruff_format" },
             go = { "goimports", "gofmt" },
             sh = { "shfmt" },
             javascript = { "prettier" },

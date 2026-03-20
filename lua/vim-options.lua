@@ -13,7 +13,6 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
--- vim.opt.smarttab = true
 
 vim.opt.smartindent = true -- Neovim's equivalent for better indenting
 
@@ -31,7 +30,6 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
--- vim.opt.isfname:append("@-@") -- Useful if you work with files that contain the @ character
 
 vim.opt.updatetime = 200
 
@@ -41,7 +39,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.showcmd = true
--- vim.opt.showmode = false  -- Neovim always shows mode by default
 vim.opt.showmatch = true
 vim.opt.history = 1000
 vim.opt.cursorline = true
@@ -57,16 +54,12 @@ vim.opt.spell = true
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevel = 99
---vim.opt.foldlevelstart = 0
---vim.opt.foldenable = true
---vim.opt.foldnestmax = 1
 
 vim.opt.list = true
 vim.opt.listchars = { tab = ">·", trail = "█", nbsp = "␣" }
 
 -- Open explorer
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
---vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Ctrl+c is the new Esc!
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -79,9 +72,6 @@ vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
-
--- Quick buffer switching
---vim.keymap.set("n", "<leader>b", "<c-^>")
 
 -- Move selected lines up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -107,12 +97,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- Turn off this garbage
 vim.keymap.set("n", "Q", "<nop>")
 
--- Replace all occurrences of current word
---vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- Make current file executable
---vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
 -- Useless plugin shortcut
 vim.keymap.set("n", "<leader>mir", "<cmd>CellularAutomaton make_it_rain<CR>")
 vim.keymap.set("n", "<leader>gol", "<cmd>CellularAutomaton game_of_life<CR>")
@@ -133,7 +117,6 @@ vim.keymap.set("n",
 vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
-    --virtual_text = { spacing = 4, prefix = "■" },
     severity_sort = true,
 })
 
@@ -149,14 +132,3 @@ function ToggleCopyGarbage()
     end
     copyGarbage = not copyGarbage
 end
-
--- Persistent Cursor
---vim.api.nvim_create_autocmd("BufReadPost", {
---  callback = function()
---    local mark = vim.api.nvim_buf_get_mark(0, '"')
---    local lcount = vim.api.nvim_buf_line_count(0)
---    if mark[1] > 0 and mark[1] <= lcount then
---      pcall(vim.api.nvim_win_set_cursor, 0, mark)
---    end
---  end,
---})

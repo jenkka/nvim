@@ -6,20 +6,6 @@ return {
         end
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "pyright",
-                    "gopls",
-                    "rust_analyzer",
-                    "bashls"
-                }
-            })
-        end
-    },
-    {
         "neovim/nvim-lspconfig",
         opts = {
             diagnostics = {
@@ -35,17 +21,12 @@ return {
                 "bashls"
             })
 
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
-            vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
-            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-            vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
-
-            --vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, {})
-            --vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-            --vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, {})
-            --vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, {})
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "LSP hover" })
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = "Go to implementation" })
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = "Go to references" })
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code action" })
+            vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename symbol" })
         end
     }
 }
