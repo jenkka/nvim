@@ -26,9 +26,9 @@ Cursor Restore on Open      nvim-lastplace remembers where you were
   FILE NAVIGATION
 ================================================================================
 
-Find file by name           <leader>ff       (Telescope find_files)
-Search inside files         <leader>fg       (Telescope live_grep)
-Switch open buffers         <leader>fb       (Telescope buffers)
+Find file by name           <leader>ff       (fzf-lua files)
+Search inside files         <leader>fg       (fzf-lua live_grep)
+Switch open buffers         <leader>fb       (fzf-lua buffers)
 Open file explorer          -                (Oil.nvim — opens parent dir)
 
   Oil Tips:
@@ -139,7 +139,7 @@ Format on save              Automatic (500ms timeout)
 
   Formatter map:
     Lua         stylua
-    Python      isort -> black     (imports first, then format)
+    Python      ruff_fix -> ruff_format  (fix lint issues, then format)
     Go          goimports -> gofmt (imports first, then format)
     Rust        rustfmt
     Bash/Shell  shfmt
@@ -208,17 +208,17 @@ Replace all                 :%s/old/new/gI<CR>
 
 
 ================================================================================
-  TELESCOPE TIPS
+  FZF-LUA TIPS
 ================================================================================
 
-In any Telescope picker:
+In any fzf-lua picker:
     Move up/down            C-n / C-p
     Open file               Enter
     Open in split           C-x (horizontal)  C-v (vertical)
     Open in tab             C-t
     Close picker            Esc
 
-  In live_grep, filter by filetype:  searchterm -- --type=lua
+  In live_grep, filter by filetype:  searchterm -- -g '*.lua'
 
 
 ================================================================================
