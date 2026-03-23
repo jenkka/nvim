@@ -16,9 +16,9 @@ return {
             vim.lsp.enable({
                 "lua_ls",
                 "pyright",
-                "gopls",
-                "rust_analyzer",
                 "bashls"
+                --"gopls",
+                --"rust_analyzer",
             })
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "LSP hover" })

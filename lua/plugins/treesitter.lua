@@ -9,13 +9,13 @@ return {
             config.setup({
                 ensure_installed = {
                     "lua",
-                    "go",
                     "python",
                     "markdown",
                     "vimdoc",
                     "bash",
-                    "cpp",
-                    "rust"
+                    --"go",
+                    --"cpp",
+                    --"rust"
                 },
 
                 -- Auto-install missing parsers when you open a file

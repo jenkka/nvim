@@ -17,12 +17,12 @@ return {
         -- Define your formatters
         formatters_by_ft = {
             lua = { "stylua" },
-            rust = { "rustfmt" },
-            python = { "ruff_fix", "ruff_format" },
-            go = { "goimports", "gofmt" },
             sh = { "shfmt" },
-            javascript = { "prettier" },
-            typescript = { "prettier" },
+            python = { "ruff_fix", "ruff_format" },
+            --go = { "goimports", "gofmt" },
+            --rust = { "rustfmt" },
+            --javascript = { "prettier" },
+            --typescript = { "prettier" },
             ["_"] = { "trim_whitespace" }, -- Runs on all filetypes
         },
         -- Set up format-on-save
