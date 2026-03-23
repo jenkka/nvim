@@ -65,7 +65,7 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Toggle search highlighting
-vim.keymap.set("n", "<leader>h", ":set hlsearch!<CR>")
+vim.keymap.set("n", "<leader>h", ":set hlsearch!<CR>", { desc = "Toggle search highlight" })
 
 -- Bindings for easy split navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h")
@@ -74,34 +74,34 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Move selected lines up and down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Append line below without moving cursor
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines (cursor stays)" })
 
 -- Center word lookup
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next match (centered)" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev match (centered)" })
 
 -- Paste without overriding current buffer
-vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Paste without overwriting register" })
 
 -- Copy to clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" })
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to clipboard" })
 
 -- Delete to void register
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to void register" })
 
 -- Turn off this garbage
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Q" })
 
 -- Useless plugin shortcut
 vim.keymap.set("n", "<leader>mir", "<cmd>CellularAutomaton make_it_rain<CR>")
 vim.keymap.set("n", "<leader>gol", "<cmd>CellularAutomaton game_of_life<CR>")
 
-vim.keymap.set('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>', { noremap = true, silent = true, desc = "Toggle copy mode" })
 
 -- CodeCompanion AI Shortcuts
 vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle AI Chat" })
@@ -114,11 +114,6 @@ vim.keymap.set("n",
     vim.diagnostic.open_float,
     { desc = "Show LSP diagnostic" })
 
-vim.diagnostic.config({
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-})
 
 -- Toggle garbage when copying text
 local copyGarbage = true
@@ -126,9 +121,15 @@ function ToggleCopyGarbage()
     if copyGarbage then
         vim.opt.number = false
         vim.opt.relativenumber = false
+        vim.opt.signcolumn = "no"
+        vim.opt.list = false
+        vim.opt.spell = false
     else
         vim.opt.number = true
         vim.opt.relativenumber = true
+        vim.opt.signcolumn = "yes"
+        vim.opt.list = true
+        vim.opt.spell = true
     end
     copyGarbage = not copyGarbage
 end

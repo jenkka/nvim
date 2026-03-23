@@ -6,12 +6,20 @@ return {
         end
     },
     {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim" },
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "lua_ls",
+                    "pyright",
+                    "bashls",
+                },
+            })
+        end
+    },
+    {
         "neovim/nvim-lspconfig",
-        opts = {
-            diagnostics = {
-                virtual_text = false,
-            },
-        },
         config = function()
             vim.lsp.enable({
                 "lua_ls",
