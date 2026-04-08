@@ -39,6 +39,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.showcmd = true
+vim.opt.showcmdloc = "statusline" -- keeps showcmd out of the cursor area
 vim.opt.showmatch = true
 vim.opt.history = 1000
 vim.opt.cursorline = true
