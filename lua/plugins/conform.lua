@@ -19,10 +19,10 @@ return {
             lua = { "stylua" },
             sh = { "shfmt" },
             python = { "ruff_fix", "ruff_format" },
-            --go = { "goimports", "gofmt" },
+            go = { "goimports", "gofmt" },
             --rust = { "rustfmt" },
-            --javascript = { "prettier" },
-            --typescript = { "prettier" },
+            javascript = { "prettier" },
+            typescript = { "prettier" },
             ["_"] = { "trim_whitespace" }, -- Runs on all filetypes
         },
         -- Set up format-on-save

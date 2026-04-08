@@ -14,6 +14,8 @@ return {
                     "lua_ls",
                     "pyright",
                     "bashls",
+                    "gopls",
+                    "ts_ls",
                 },
             })
         end
@@ -24,8 +26,9 @@ return {
             vim.lsp.enable({
                 "lua_ls",
                 "pyright",
-                "bashls"
-                --"gopls",
+                "bashls",
+                "gopls",
+                "ts_ls",
                 --"rust_analyzer",
             })
 
