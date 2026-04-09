@@ -28,6 +28,14 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
+-- Make background transparent (inherits terminal opacity)
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+    end,
+})
+
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
