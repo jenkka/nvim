@@ -9,10 +9,10 @@ vim.opt.mouse = "" -- Turn off mouse
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+-- vim.opt.expandtab = true
+-- vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
 
 vim.opt.smartindent = true -- Neovim's equivalent for better indenting
 
@@ -30,10 +30,10 @@ vim.opt.termguicolors = true
 
 -- Make background transparent (inherits terminal opacity)
 vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function()
-        vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-    end,
+	callback = function()
+		vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+	end,
 })
 
 vim.opt.scrolloff = 8
@@ -106,11 +106,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to void regi
 -- Turn off this garbage
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Q" })
 
--- Useless plugin shortcut
-vim.keymap.set("n", "<leader>mir", "<cmd>CellularAutomaton make_it_rain<CR>")
-vim.keymap.set("n", "<leader>gol", "<cmd>CellularAutomaton game_of_life<CR>")
-
-vim.keymap.set('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>', { noremap = true, silent = true, desc = "Toggle copy mode" })
+vim.keymap.set('n', '<leader>cp', ':lua ToggleCopyGarbage()<CR>',
+	{ noremap = true, silent = true, desc = "Toggle copy mode" })
 
 -- CodeCompanion AI Shortcuts
 vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle AI Chat" })
@@ -119,26 +116,26 @@ vim.keymap.set("v", "<leader>ad", "<cmd>CodeCompanionChat Add<cr>", { desc = "Ad
 
 -- Show diagnostics
 vim.keymap.set("n",
-    "<leader>e",
-    vim.diagnostic.open_float,
-    { desc = "Show LSP diagnostic" })
+	"<leader>e",
+	vim.diagnostic.open_float,
+	{ desc = "Show LSP diagnostic" })
 
 
 -- Toggle garbage when copying text
 local copyGarbage = true
 function ToggleCopyGarbage()
-    if copyGarbage then
-        vim.opt.number = false
-        vim.opt.relativenumber = false
-        vim.opt.signcolumn = "no"
-        vim.opt.list = false
-        vim.opt.spell = false
-    else
-        vim.opt.number = true
-        vim.opt.relativenumber = true
-        vim.opt.signcolumn = "yes"
-        vim.opt.list = true
-        vim.opt.spell = true
-    end
-    copyGarbage = not copyGarbage
+	if copyGarbage then
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+		vim.opt.signcolumn = "no"
+		vim.opt.list = false
+		vim.opt.spell = false
+	else
+		vim.opt.number = true
+		vim.opt.relativenumber = true
+		vim.opt.signcolumn = "yes"
+		vim.opt.list = true
+		vim.opt.spell = true
+	end
+	copyGarbage = not copyGarbage
 end

@@ -41,6 +41,11 @@ undotree                  Visual undo history browser
 which-key.nvim            Shows available keybinds after pressing a prefix
 lualine.nvim              Statusline
 nvim-lastplace            Reopens files at the last cursor position
+gitsigns.nvim             Git hunks in the gutter + stage/reset/blame
+nvim-dap                  Debug Adapter Protocol client
+nvim-dap-ui               UI panel for nvim-dap (scopes, stacks, watches)
+nvim-dap-go               Go integration for nvim-dap (wraps delve)
+nvim-nio                  Async I/O library (nvim-dap-ui dependency)
 codecompanion.nvim        AI chat assistant (Ollama / qwen2.5-coder:14b)
 moonfly                   Colorscheme (catppuccin available but commented out)
 mini.icons                Icon provider
@@ -211,6 +216,70 @@ blocks, etc.) rather than indentation. All folds start open by default.
 
 
 ================================================================================
+  GIT INTEGRATION (gitsigns.nvim)
+================================================================================
+
+Gutter shows +/-/~ signs for added, deleted, and changed lines vs. the index.
+
+HUNK NAVIGATION
+  ]c              Jump to next hunk
+  [c              Jump to previous hunk
+
+HUNK ACTIONS (works in normal mode; <leader>hs/hr also work on visual range)
+  <leader>hs      Stage hunk under cursor
+  <leader>hr      Reset hunk under cursor (discard changes)
+  <leader>hS      Stage entire buffer
+  <leader>hu      Undo last stage
+  <leader>hR      Reset entire buffer
+  <leader>hp      Preview hunk in a floating window
+  <leader>hd      Diff buffer against index
+  <leader>hD      Diff buffer against last commit
+
+BLAME & INSPECTION
+  <leader>hb      Show full blame for current line (popup)
+  <leader>tb      Toggle inline virtual-text blame for all lines
+  <leader>td      Toggle showing deleted lines
+
+TEXT OBJECT
+  ih              Select inside hunk (e.g. dih to delete a hunk's changes,
+                  vih to visually select it)
+
+
+================================================================================
+  DEBUGGING (nvim-dap + nvim-dap-go)
+================================================================================
+
+Requires delve installed on PATH:
+  go install github.com/go-delve/delve/cmd/dlv@latest
+
+BREAKPOINTS
+  <leader>b       Toggle breakpoint at cursor
+  <leader>B       Set conditional breakpoint (prompts for expression)
+
+STEPPING (function keys match VSCode / most IDEs)
+  <F5>            Continue / start debugging
+  <F10>           Step over
+  <F11>           Step into
+  <F12>           Step out
+
+SESSION
+  <leader>du      Toggle DAP UI (scopes, stacks, watches, REPL, console)
+  <leader>dr      Open DAP REPL only
+  <leader>dl      Re-run last debug session
+  <leader>dt      Debug the Go test under cursor
+
+The UI panel opens automatically when a session starts and closes when it
+exits. Breakpoints render as a red dot in the sign column.
+
+Typical Go workflow:
+  1. Place cursor in a test function          (e.g. TestTransferTx)
+  2. <leader>b on any line you want to inspect
+  3. <leader>dt to launch the test under delve
+  4. Use F10/F11 to step, hover variables in the Scopes panel
+  5. <leader>du to hide the UI when done
+
+
+================================================================================
   AI ASSISTANT (CodeCompanion + Ollama)
 ================================================================================
 
@@ -290,6 +359,8 @@ MISC
 :Trouble        Open diagnostics panel
 :Oil            Open file explorer
 :UndotreeToggle Open undo history
+:Gitsigns       Gitsigns subcommands (blame, diff, etc.)
+:DapContinue    Start or continue a debug session
 
 ================================================================================
   FUN
